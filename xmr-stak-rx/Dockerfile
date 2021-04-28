@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM ubuntu:latest
 
 LABEL org.opencontainers.image.source="https://github.com/paoliveira/fun_with_azure"
 
