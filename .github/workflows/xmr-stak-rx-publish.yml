@@ -19,6 +19,27 @@ env:
   IMAGE_NAME: paipo-xmr-stack-rx
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: PWD
+        run: pwd
+
+      - name: Ls
+        run: ls -alh
+
+      - name: PWD
+        run: pwd
+        working-directory: ~/xmr-stack-rx
+
+      - name: Ls
+        run: ls -alh
+        working-directory: ~/xmr-stack-rx
+
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
   push:
