@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - xmr-stack-rx/**
+      - xmr-stak-rx/**
 
     # Publish `v1.2.3` tags as releases.
     tags:
@@ -16,7 +16,7 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: paipo-xmr-stack-rx
+  IMAGE_NAME: paipo-xmr-stak-rx
 
 jobs:
   test:
@@ -34,11 +34,11 @@ jobs:
 
       - name: PWD
         run: pwd
-        working-directory: ${{ github.workspace }}
+        working-directory: ${{ github.workspace }}/xmr-stak-rx
 
       - name: Ls
         run: ls -alh
-        working-directory: ${{ github.workspace }}
+        working-directory: ${{ github.workspace }}/xmr-stak-rx
 
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
@@ -52,7 +52,7 @@ jobs:
 
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
-        working-directory: ${{ github.workspace }}/xmr-stack-rx
+        working-directory: ${{ github.workspace }}/xmr-stak-rx
 
       - name: Log into registry
         run: echo "${{ secrets.PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
