@@ -34,11 +34,11 @@ jobs:
 
       - name: PWD
         run: pwd
-        working-directory: ${{ github.workspace }}/xmr-stack-rx
+        working-directory: ${{ github.workspace }}
 
       - name: Ls
         run: ls -alh
-        working-directory: ${{ github.workspace }}/xmr-stack-rx
+        working-directory: ${{ github.workspace }}
 
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
