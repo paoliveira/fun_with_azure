@@ -19,33 +19,22 @@ env:
   IMAGE_NAME: paipo-xmr-stak-rx
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: PWD
-        run: pwd
-
-      - name: Ls
-        run: ls -alh
-
-      - name: PWD
-        run: pwd
-        working-directory: ${{ github.workspace }}/xmr-stak-rx
-
-      - name: Ls
-        run: ls -alh
-        working-directory: ${{ github.workspace }}/xmr-stak-rx
+#  test:
+#    runs-on: ubuntu-latest
+#    if: github.event_name == 'workflow_dispatch'
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: PWD
+#        run: pwd
+#      - name: Ls
+#        run: ls -alh
 
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
   push:
     runs-on: ubuntu-latest
 #    if: github.event_name == 'push'
-    needs: test
+#    needs: test
 
     steps:
       - uses: actions/checkout@v2
