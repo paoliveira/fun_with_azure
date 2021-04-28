@@ -1,8 +1,11 @@
-FROM ubuntu:latest
+FROM clearlinux:latest
 
 LABEL org.opencontainers.image.source="https://github.com/paoliveira/fun_with_azure"
 
-RUN apt-get -y update
+#RUN apt-get -y update
+
+RUN swupd update -y
+RUN swupd bundle-add wget -y
 
 WORKDIR /usr/miner
 #ADD xmr-stak-rx-linux-1.0.5-cpu.tar.xz /usr/xmr-stak-rx/
