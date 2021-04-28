@@ -1,8 +1,12 @@
-FROM debian:latest
+FROM clearlinux:latest
 
 LABEL org.opencontainers.image.source="https://github.com/paoliveira/fun_with_azure"
 
-RUN apt-get -y update
+#RUN apt -y update
+#RUN apt -y install wget
+
+RUN swupd update -y
+RUN swupd bundle-add wget -y
 
 WORKDIR /usr/miner
 #https://github.com/doktor83/SRBMiner-Multi/releases/download/0.7.3/SRBMiner-Multi-0-7-3-Linux.tar.xz
