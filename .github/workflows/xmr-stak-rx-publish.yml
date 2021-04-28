@@ -34,24 +34,25 @@ jobs:
 
       - name: PWD
         run: pwd
-        working-directory: ~/xmr-stack-rx
+        working-directory: ${{ github.workspace }}/xmr-stack-rx
 
       - name: Ls
         run: ls -alh
-        working-directory: ~/xmr-stack-rx
+        working-directory: ${{ github.workspace }}/xmr-stack-rx
 
   # Push image to GitHub Packages.
   # See also https://docs.docker.com/docker-hub/builds/
   push:
     runs-on: ubuntu-latest
 #    if: github.event_name == 'push'
+    needs: test
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
-        working-directory: xmr-stack-rx
+        working-directory: ${{ github.workspace }}/xmr-stack-rx
 
       - name: Log into registry
         run: echo "${{ secrets.PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
