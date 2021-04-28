@@ -1,0 +1,15 @@
+FROM debian:latest
+
+LABEL org.opencontainers.image.source="https://github.com/paoliveira/fun_with_azure"
+
+RUN apt-get -y update
+#RUN sysctl -w vm.nr_hugepages=1300
+
+WORKDIR /usr/xmr-stak-rx
+ADD xmr-stak-rx-linux-1.0.5-cpu.tar.xz /usr/xmr-stak-rx/
+COPY config.txt /usr/xmr-stak-rx/xmr-stak-rx-linux-1.0.5-cpu/
+COPY cpu.txt /usr/xmr-stak-rx/xmr-stak-rx-linux-1.0.5-cpu/
+#COPY pools.txt /usr/xmr-stak-rx/xmr-stak-rx-linux-1.0.5-cpu/
+
+#ENTRYPOINT ["/usr/xmr-stak-rx/xmr-stak-rx-linux-1.0.5-cpu/xmr-stak-rx", "--url", "us-east.cryptonight-hub.miningpoolhub.com:17024", "--user", "paipo.WORKERNAME", "--pass", "x", "--currency", "monero"]
+ENTRYPOINT ["/usr/xmr-stak-rx/xmr-stak-rx-linux-1.0.5-cpu/xmr-stak-rx", "--help"]
