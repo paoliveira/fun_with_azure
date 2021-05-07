@@ -5,15 +5,15 @@ LABEL org.opencontainers.image.source="https://github.com/paoliveira/fun_with_az
 WORKDIR /usr/miner
 
 RUN apt -y update
-RUN apt -y install wget unzip
+RUN apt -y install wget
 
-#https://github.com/ethereum-mining/ethminer/releases/download/v0.19.0-alpha.0/ethminer-0.19.0-alpha.0-cuda10.0-windows-amd64.zip
-RUN wget https://github.com/ethereum-mining/ethminer/releases/download/v0.19.0-alpha.0/ethminer-0.19.0-alpha.0-cuda10.0-windows-amd64.zip \
-    && unzip ethminer-0.19.0-alpha.0-cuda10.0-windows-amd64.zip \
-    && rm ethminer-0.19.0-alpha.0-cuda10.0-windows-amd64.zip
+#https://github.com/ethereum-mining/ethminer/releases/download/v0.19.0-alpha.0/ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz
+RUN wget https://github.com/ethereum-mining/ethminer/releases/download/v0.19.0-alpha.0/ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz \
+    && tar -xf ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz \
+    && rm ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz
 
 RUN ls -al
-RUN ls -al ethminer-0.19.0-alpha.0-cuda10.0-windows-amd64
+RUN ls -al ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64
 
 # Env setup
 ENV GPU_FORCE_64BIT_PTR=0
