@@ -12,8 +12,9 @@ RUN wget https://github.com/ethereum-mining/ethminer/releases/download/v0.19.0-a
     && tar -xf ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz \
     && rm ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz
 
+RUN pwd
 RUN ls -al
-RUN ls -al ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64
+RUN ls -al bin
 
 # Env setup
 ENV GPU_FORCE_64BIT_PTR=0
@@ -22,4 +23,4 @@ ENV GPU_USE_SYNC_OBJECTS=1
 ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
 
-ENTRYPOINT ["/usr/miner/ethminer", "-U"]
+ENTRYPOINT ["/usr/miner/bin/ethminer", "-U"]
