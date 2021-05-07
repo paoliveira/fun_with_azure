@@ -12,9 +12,9 @@ RUN wget https://github.com/ethereum-mining/ethminer/releases/download/v0.19.0-a
     && tar -xf ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz \
     && rm ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz
 
-RUN pwd
-RUN ls -al
-RUN ls -al bin
+#RUN pwd
+#RUN ls -al
+#RUN ls -al bin
 
 # Env setup
 ENV GPU_FORCE_64BIT_PTR=0
