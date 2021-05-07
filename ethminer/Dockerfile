@@ -5,7 +5,7 @@ LABEL org.opencontainers.image.source="https://github.com/paoliveira/fun_with_az
 WORKDIR /usr/miner
 
 RUN apt -y update
-RUN apt -y install unzip
+RUN apt -y install wget unzip
 
 #https://github.com/ethereum-mining/ethminer/releases/download/v0.19.0-alpha.0/ethminer-0.19.0-alpha.0-cuda10.0-windows-amd64.zip
 RUN wget https://github.com/ethereum-mining/ethminer/releases/download/v0.19.0-alpha.0/ethminer-0.19.0-alpha.0-cuda10.0-windows-amd64.zip \
