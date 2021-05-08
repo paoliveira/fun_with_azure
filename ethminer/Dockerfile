@@ -1,34 +1,16 @@
-FROM nvidia/cuda:11.3.0-devel-ubuntu18.04
+FROM nvidia/cuda:11.3.0-runtime-ubuntu18.04
 
 LABEL org.opencontainers.image.source="https://github.com/paoliveira/fun_with_azure"
 
-WORKDIR /
+WORKDIR /usr/miner
 
-# Package and dependency setup
-RUN apt-get update \
-    && apt-get -y install software-properties-common \
-    && apt-get update \
-    && apt-get install -y git \
-     cmake \
-     opencl-headers \
-     mesa-common-dev \
-     build-essential \
-     libdbus-1-dev \
-     perl
+RUN apt -y update
+RUN apt -y install wget
 
-# Git repo set up
-RUN git clone https://github.com/ethereum-mining/ethminer.git; \
-    cd ethminer; \
-    git checkout tags/v0.19.0; \
-    git submodule update --init --recursive
-
-# Build
-RUN cd ethminer; \
-    mkdir build; \
-    cd build; \
-    cmake .. -DETHASHCUDA=ON -DETHASHCL=OFF -DETHSTRATUM=ON; \
-    cmake --build .; \
-    make install;
+#https://github.com/ethereum-mining/ethminer/releases/download/v0.19.0-alpha.0/ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz
+RUN wget https://github.com/ethereum-mining/ethminer/releases/download/v0.19.0-alpha.0/ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz \
+    && tar -xf ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz \
+    && rm ethminer-0.19.0-alpha.0-cuda-9-linux-x86_64.tar.gz
 
 # Env setup
 ENV GPU_FORCE_64BIT_PTR=0
@@ -37,4 +19,4 @@ ENV GPU_USE_SYNC_OBJECTS=1
 ENV GPU_MAX_ALLOC_PERCENT=100
 ENV GPU_SINGLE_ALLOC_PERCENT=100
 
-ENTRYPOINT ["/usr/local/bin/ethminer", "-U"]
+ENTRYPOINT ["/usr/miner/bin/ethminer", "-U", "-M", "10000"]
