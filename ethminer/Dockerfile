@@ -1,4 +1,5 @@
-FROM nvidia/cuda:9.1-devel-ubuntu16.04
+ARG runtime="nvidia"
+FROM nvidia/cuda:9.2-runtime-ubuntu18.04
 
 LABEL org.opencontainers.image.source="https://github.com/paoliveira/fun_with_azure"
 
